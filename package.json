@@ -15,6 +15,7 @@
     "start:debug": "cross-env DEBUG=express-mongoose-es6-rest-api:* yarn start",
     "start_heroku": "babel-node ./index.js --preset=babel-preset-es2015",
     "build": "babel . -d dist --presets es2015,stage-0 --ignore spec.js,node_modules",
+    "heroku-postbuild": "npm install",
     "lint": "esw *.js server config --color",
     "lint:watch": "yarn lint -- --watch",
     "precommit": "yarn lint",

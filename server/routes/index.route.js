@@ -1,8 +1,12 @@
 import express from 'express';
+import path from 'path';
 import userRoutes from './user.route';
 import authRoutes from './auth.route';
 
+const buildDirectory = path.join(process.cwd(), '/build/');
 const router = express.Router(); // eslint-disable-line new-cap
+
+router.get('/', express.static(buildDirectory));
 
 /** GET /health-check - Check service health */
 router.get('/health-check', (req, res) =>
@@ -10,9 +14,9 @@ router.get('/health-check', (req, res) =>
 );
 
 // mount user routes at /users
-router.use('/users', userRoutes);
+router.use('/api/users', userRoutes);
 
 // mount auth routes at /auth
-router.use('/auth', authRoutes);
+router.use('/api/auth', authRoutes);
 
 export default router;
